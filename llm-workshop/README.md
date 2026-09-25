@@ -9,6 +9,11 @@ You'll try:
 - **Llama 3.2 (3B)** — Meta's small, fast general-purpose chat model (~2.0 GB)
 - **Qwen 2.5 (3B)** — Alibaba's small, fast general-purpose chat model (~1.9 GB)
 
+> **Important:** always pull Qwen with the explicit `:3b` tag —
+> `ollama pull qwen2.5:3b`, not just `ollama pull qwen2.5`. Without the tag, Ollama
+> defaults to the much bigger 7B version (~4.7 GB), which combined with Llama 3.2 can use
+> more RAM than a typical laptop has free, causing crashes when switching between models.
+
 By the end, you'll be able to run both models and compare how they answer the same question.
 
 ## What you'll need
@@ -63,7 +68,7 @@ wifi), so start it as soon as you can:
 
 ```bash
 ollama pull llama3.2
-ollama pull qwen2.5
+ollama pull qwen2.5:3b
 ```
 
 Expected output ends with something like:
@@ -75,7 +80,7 @@ Confirm both models are present:
 ```bash
 ollama list
 ```
-You should see both `llama3.2` and `qwen2.5` listed with their size (~2 GB each).
+You should see both `llama3.2` and `qwen2.5:3b` listed with their size (~2 GB each).
 
 ---
 
@@ -95,7 +100,7 @@ python3 -m venv .venv
 source .venv/bin/activate        # macOS/Linux
 # .venv\Scripts\activate         # Windows (PowerShell/cmd)
 
-pip install -r requirements.txt
+pip insoutput:tall -r requirements.txt
 ```
 
 You should see `ollama` installed with no errors.
@@ -113,7 +118,7 @@ You'll be asked to pick a model:
 ```
 Which model would you like to talk to?
   1) llama3.2  (Meta, ~2.0 GB)
-  2) qwen2.5   (Alibaba, ~1.9 GB)
+  2) qwen2.5:3b   (Alibaba, ~1.9 GB)
 Enter 1 or 2:
 ```
 

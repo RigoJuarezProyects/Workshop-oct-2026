@@ -59,7 +59,7 @@ Resources:
   DemoSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Allow SSH only, restricted to instructor's IP
+      GroupDescription: Allow SSH only, restricted to instructor IP
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22

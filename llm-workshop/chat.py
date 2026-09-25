@@ -10,7 +10,7 @@ Prerequisites:
     1. Ollama installed and running (https://ollama.com/download)
     2. Both models pulled:
          ollama pull llama3.2
-         ollama pull qwen2.5
+         ollama pull qwen2.5:3b
     3. Python dependencies installed:
          pip install -r requirements.txt
 """
@@ -20,17 +20,20 @@ import sys
 import ollama
 
 # The two small models used in this workshop (2-4 GB range).
+# NOTE: qwen2.5's bare "latest" tag resolves to the 7B variant (~4.7GB), not
+# the 3B one - we pin ":3b" explicitly so both models stay in the same small
+# size class and don't risk running out of RAM when loaded together.
 MODELS = {
     "1": "llama3.2",
-    "2": "qwen2.5",
+    "2": "qwen2.5:3b",
 }
 
 
 def choose_model() -> str:
     """Ask the user which model to chat with and return its Ollama tag."""
     print("\nWhich model would you like to talk to?")
-    print("  1) llama3.2  (Meta, ~2.0 GB)")
-    print("  2) qwen2.5   (Alibaba, ~1.9 GB)")
+    print("  1) llama3.2     (Meta, ~2.0 GB)")
+    print("  2) qwen2.5:3b   (Alibaba, ~1.9 GB)")
 
     while True:
         choice = input("Enter 1 or 2: ").strip()
@@ -106,7 +109,7 @@ def main() -> None:
     print("=" * 50)
     print("Make sure Ollama is running and you've pulled both models:")
     print("  ollama pull llama3.2")
-    print("  ollama pull qwen2.5")
+    print("  ollama pull qwen2.5:3b")
 
     model = choose_model()
     while True:

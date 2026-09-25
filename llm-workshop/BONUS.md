@@ -6,15 +6,15 @@ Finished early? Here's a ~10 minute extension that builds directly on `chat.py`.
 
 Write a small script, `benchmark.py`, that:
 
-1. Sends the **same 5 prompts** to both `llama3.2` and `qwen2.5`.
+1. Sends the **same 5 prompts** to both `llama3.2` and `qwen2.5:3b`.
 2. Times how long each model takes to respond to each prompt.
 3. Prints a simple comparison table at the end, e.g.:
 
 ```
-Prompt                                   llama3.2 (s)   qwen2.5 (s)
-----------------------------------------  -------------  ------------
-What is the capital of France?                    1.42          1.18
-Write a haiku about the ocean.                     2.05          1.87
+Prompt                                   llama3.2 (s)   qwen2.5:3b (s)
+----------------------------------------  -------------  --------------
+What is the capital of France?                    1.42            1.18
+Write a haiku about the ocean.                     2.05            1.87
 ...
 ```
 
@@ -43,13 +43,13 @@ Once the basic benchmark works, try one of these:
 
 ```python
 #!/usr/bin/env python3
-"""benchmark.py - Compare response time between llama3.2 and qwen2.5."""
+"""benchmark.py - Compare response time between llama3.2 and qwen2.5:3b."""
 
 import time
 
 import ollama
 
-MODELS = ["llama3.2", "qwen2.5"]
+MODELS = ["llama3.2", "qwen2.5:3b"]
 
 PROMPTS = [
     "What is the capital of France?",
@@ -97,6 +97,6 @@ This reuses the exact same `ollama.chat()` call from `chat.py`, just without str
 wrapped in timing logic. Running it prints per-prompt timings plus a final comparison table
 and averages — usually showing both 3B models responding in a similar (low single-digit
 seconds) ballpark on typical laptop hardware, with small models like these it's common to see
-qwen2.5 respond a bit faster or slower than llama3.2 depending on the machine.
+qwen2.5:3b respond a bit faster or slower than llama3.2 depending on the machine.
 
 </details>
